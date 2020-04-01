@@ -6,13 +6,21 @@ class Team extends React.Component {
       shots: 0,
       score: 0
     };
+
+    this.shotSound = new Audio("./assets/audio/steelsword.mp3");
+    this.scoreSound = new Audio("./assets/audio/cheer2.mp3");
   }
 
   shotHandler = () => {
     let score = this.state.score;
+    this.shotSound.play();
 
     if (Math.random() > 0.5) {
       score += 1;
+
+      setTimeout(() => {
+        this.scoreSound.play();
+      }, 100);
     }
 
     this.setState((state, props) => ({
@@ -22,6 +30,19 @@ class Team extends React.Component {
   };
 
   render() {
+    let shotPercentageDiv;
+
+    if (this.state.shots) {
+      const shotPercentage = Math.round(
+        (this.state.score / this.state.shots) * 100
+      );
+      shotPercentageDiv = (
+        <div>
+          <strong>Striking %: {shotPercentage}</strong>
+        </div>
+      );
+    }
+
     return (
       <div className="Team">
         <h2>{this.props.name}</h2>
@@ -38,30 +59,63 @@ class Team extends React.Component {
           <strong>Score:</strong> {this.state.score}
         </div>
 
+        {shotPercentageDiv}
+
         <button onClick={this.shotHandler}>Fire!</button>
       </div>
     );
   }
 }
 
-// Deafault App component that all other compents are rendered through
-function App(props) {
+function Game(props) {
   return (
-    <div className="App">
-      <h1 align="center">Time for the Battle of the Champions!</h1>
+    <div className="Game">
+      <h2>The Battle of {props.venue}</h2>
       <div className="stats">
         <Team
-          name="House of Targaryen"
-          logo="./assets/images/House-Targaryen.png"
+          name={props.visitingTeam.name}
+          logo={props.visitingTeam.logoSrc}
         />
         <div className="versus">
           <h1>VS</h1>
         </div>
-        <Team
-          name="House of Lannister"
-          logo="./assets/images/House-Lannister.png"
-        />
+        <Team name={props.homeTeam.name} logo={props.homeTeam.logoSrc} />
       </div>
+    </div>
+  );
+}
+
+// Deafault App component that all other compents are rendered through
+function App(props) {
+  const targaryan = {
+    name: "House of Targaryen",
+    logoSrc: "./assets/images/House-Targaryen.png"
+  };
+
+  const lannister = {
+    name: "House of Lannister",
+    logoSrc: "./assets/images/House-Lannister.png"
+  };
+
+  const stark = {
+    name: "House of Stark",
+    logoSrc: "./assets/images/House-Stark.png"
+  };
+
+  const bolton = {
+    name: "House of Bolton",
+    logoSrc: "./assets/images/House-Bolton.png"
+  };
+
+  return (
+    <div className="App">
+      <h1 align="center">Time for the Battle of the Champions!</h1>
+      <Game
+        venue="King's Landing"
+        homeTeam={lannister}
+        visitingTeam={targaryan}
+      />
+      <Game venue="Winterfell" homeTeam={stark} visitingTeam={bolton} />
     </div>
   );
 }
