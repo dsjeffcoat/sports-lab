@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative&display=swap');
 @font-face {
     font-family: "Score Board";
     src: url('https://cdn.jsdelivr.net/gh/dteirney/trains.maxx.co.nz/fonts/scoreboard/scoreboard-webfont.eot');
@@ -18,7 +18,10 @@ html * {
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Cinzel Decorative', sans-serif;
+    color: lightsteelblue;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/images/got-bg.jpg);
+    /* background-color: darkgray; */
 }
 
 .ScoreBoard {
@@ -28,7 +31,7 @@ body {
     text-align: center;
     background: #2c2c2c;
     color: #fd8049;
-    text-shadow: 0 0 3px #fd8049;
+    text-shadow: 6px 6px 3px #fd8049;
     padding: 1rem 0;
 }
 
