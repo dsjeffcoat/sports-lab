@@ -1,4 +1,9 @@
-# React Basics Lab: A Sports Game
+# Sports Lab Game
+This particular game was built using React during my time at Kenzie Academy. I decided to add more to the basics by giving it a Game of Thrones theme and providing naming conventions based on the show. The images and sounds were provided by Creative Commons.
+
+Click the following link to view the full deployment of this app: https://dsjeffcoat.github.io/sports-lab/
+
+## React Basics Lab: A Sports Game
 In this lab, you will build a simple sports game. This lab will exercise your comfort level with JSX, Both stateful and stateless ReactJS components, working with props, and leveraging local state within a stateful component. 
 
 To get started you need to get everything set up so we are able to run our React application. This includes creating an HTML page to display our application, importing React and other scripts, and leveraging these script to render an application to our HTML page.
